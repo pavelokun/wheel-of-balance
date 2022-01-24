@@ -20,31 +20,19 @@ import useMounted from "../hooks/useMounted";
 
 export default function LoginPage() {
   const history = useHistory();
+  const location = useLocation();
   const { signInWithGoogle, login } = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const toast = useToast();
-  // const mounted = useRef(false)
-  const location = useLocation();
 
-  // useEffect(() => {
-  //   mounted.current = true
-  //   return () => {
-  //     mounted.current = false
-  //   }
-  // }, [])
+  const toast = useToast();
 
   const mounted = useMounted();
 
   function handleRedirectToOrBack() {
-    // console.log(location?.state)
     history.replace(location.state?.from ?? "/");
-    // if (location.state) {
-    //   history.replace(location.state?.from)
-    // } else {
-    //   history.replace('/profile')
-    // }
   }
 
   return (
@@ -81,10 +69,6 @@ export default function LoginPage() {
                 });
               })
               .finally(() => {
-                // setTimeout(() => {
-                //   mounted.current && setIsSubmitting(false)
-                //   console.log(mounted.current)
-                // }, 1000)
                 mounted.current && setIsSubmitting(false);
               });
           }}
@@ -112,10 +96,9 @@ export default function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </FormControl>
-            {/* <PasswordField /> */}
             <Button
               type="submit"
-              colorScheme="pink"
+              colorScheme="teal"
               size="lg"
               fontSize="md"
               isLoading={isSubmitting}

@@ -6,23 +6,9 @@ import {
   getElementsAtEvent,
   PolarArea,
 } from "react-chartjs-2";
+import { Sector } from "../types";
 
 ChartJS.register(RadialLinearScale, ArcElement);
-
-type Children = {
-  id: string;
-  title: string;
-  value: number;
-  color: string;
-};
-
-export type Sector = {
-  id: string;
-  title: string;
-  value: number;
-  color: string;
-  children: Children[];
-};
 
 const options = {
   scales: {
@@ -33,6 +19,7 @@ const options = {
         centerPointLabels: true,
         font: {
           size: 18,
+          // weight: "bold",
         },
       },
       angleLines: {
@@ -53,7 +40,12 @@ type Data = {
   datasets: [Datasets];
 };
 
-export function Chart({ data: sectors }: { data: Sector[] }) {
+type Wheel = {
+  id: string;
+  sectors: Sector[];
+};
+
+function ChartComponent({ data: wheel }: { data: Wheel }) {
   const chartRef = useRef<any>(null);
   const [data, setData] = useState<Data | null>(null);
 
@@ -61,10 +53,10 @@ export function Chart({ data: sectors }: { data: Sector[] }) {
     const labels: string[] = [],
       backgroundColor: string[] = [],
       data: number[] = [];
-    sectors.forEach(({ title, value, color }) => {
+    wheel.sectors.forEach(({ title, value, color }) => {
       labels.push(title);
       data.push(value);
-      backgroundColor.push(color);
+      backgroundColor.push(`rgba(${color}, 0.6)`);
     });
 
     setData({
@@ -77,23 +69,25 @@ export function Chart({ data: sectors }: { data: Sector[] }) {
         },
       ],
     });
-  }, [sectors]);
+  }, [wheel.sectors]);
 
   return (
     data && (
       <PolarArea
         ref={chartRef}
-        onClick={(event) => {
-          const dataset = getDatasetAtEvent(chartRef.current, event);
-          const element = getElementAtEvent(chartRef.current, event);
-          const elements = getElementsAtEvent(chartRef.current, event);
-          console.log(element);
-          console.log(elements);
-          console.log(dataset);
-        }}
+        // onClick={(event) => {
+        //   const dataset = getDatasetAtEvent(chartRef.current, event);
+        //   const element = getElementAtEvent(chartRef.current, event);
+        //   const elements = getElementsAtEvent(chartRef.current, event);
+        //   console.log(element);
+        //   console.log(elements);
+        //   console.log(dataset);
+        // }}
         options={options}
         data={data}
       />
     )
   );
 }
+
+export const Chart = React.memo(ChartComponent);

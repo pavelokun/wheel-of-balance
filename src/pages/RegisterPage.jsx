@@ -94,7 +94,7 @@ export default function RegisterPage() {
             </FormControl>
             <Button
               type="submit"
-              colorScheme="pink"
+              colorScheme="teal"
               size="lg"
               fontSize="md"
               isLoading={isSubmitting}
@@ -117,7 +117,15 @@ export default function RegisterPage() {
           onClick={() =>
             signInWithGoogle()
               .then((user) => console.log(user))
-              .catch((e) => console.log(e.message))
+              .catch((error) => {
+                console.log(error.message);
+                toast({
+                  description: error.message,
+                  status: "error",
+                  duration: 9000,
+                  isClosable: true,
+                });
+              })
           }
         >
           Sign in with Google

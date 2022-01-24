@@ -1,8 +1,9 @@
 {
-  "name": "react-firebase-auth",
+  "name": "wheel-of-balance",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/icons": "^1.1.1",
     "@chakra-ui/react": "^1.6.8",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
@@ -14,7 +15,7 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "chart.js": "^3.7.0",
-    "firebase": "^9.0.2",
+    "firebase": "^9.6.3",
     "framer-motion": "^4.1.17",
     "react": "^17.0.2",
     "react-chartjs-2": "^4.0.1",
@@ -48,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.3.3"
   }
 }

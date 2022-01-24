@@ -1,4 +1,3 @@
-import React from "react";
 import {
   BrowserRouter as Router,
   Redirect,
@@ -11,10 +10,8 @@ import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage";
-// import ProfilePage from "../pages/ProfilePage";
 import RegisterPage from "../pages/RegisterPage";
 import ResetPasswordPage from "../pages/ResetPasswordPage";
-// import TestPage from "../pages/TestPage";
 
 export default function AppRouter(props) {
   return (
@@ -24,8 +21,6 @@ export default function AppRouter(props) {
           <ProtectedRoute exact path="/" component={HomePage} />
           <ProtectedRoute exact path="/login" component={LoginPage} />
           <ProtectedRoute exact path="/register" component={RegisterPage} />
-          {/* <ProtectedRoute exact path='/profile' component={ProfilePage} /> */}
-          {/* <ProtectedRoute exact path='/test' component={TestPage} /> */}
           <ProtectedRoute
             exact
             path="/forgot-password"
@@ -46,9 +41,7 @@ export default function AppRouter(props) {
 function ProtectedRoute(props) {
   const { currentUser } = useAuth();
   const { path } = props;
-  console.log("path", path);
   const location = useLocation();
-  console.log("location state", location.state);
 
   if (
     path === "/login" ||
