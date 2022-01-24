@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Chart as ChartJS, RadialLinearScale, ArcElement } from "chart.js";
 import {
-  getDatasetAtEvent,
-  getElementAtEvent,
-  getElementsAtEvent,
+  // getDatasetAtEvent,
+  // getElementAtEvent,
+  // getElementsAtEvent,
   PolarArea,
 } from "react-chartjs-2";
 import { Sector } from "../types";
